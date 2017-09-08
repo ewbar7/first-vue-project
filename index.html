@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Examples</title>
+		<link rel="stylesheet" type="text/css" href="./css/shili.css">
+		<script type="text/javascript" src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div id="vuediv">
+			<div>
+				<p>添加任务:</p>
+				<p>
+					<input type="text" v-model="todo" @keyup.enter="addItem(todo)" />
+				</p>
+				<ul v-show="lists.length">
+					<li>
+						{{
+							notFinished
+						}}
+						个任务未完成</li>
+					<li class="action">
+						<a class="action" href="#all">所有任务</a>
+						<a href="#unfinished">未完成的任务</a>
+						<a href="#finished">完成的任务</a>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<p>任务列表：</p>
+				<span v-show="!lists.length">还没有添加任何任务</span>
+				<ul>
+					<li :class="{completed:item.isChecked}"  v-for="item in finallList">
+						<div class="">
+							<input type="checkbox" v-model="item.isChecked">
+							<span v-text="item.title"></span>
+							<input type="button" value="X" @click="removeItem(item)">
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div> 
+	   	<script type="text/javascript" src="./js/task.js"></script> 
+	</body>
+</html>
